@@ -10,21 +10,21 @@ const teamMembers: TeamMember[] = [
     name: 'Eric Shao',
     role: 'Co-Founder & Managing Partner',
     bio: 'Former technical lead in scalable data architectures. Specializes in optimizing hybrid cloud infrastructures for latency-sensitive applications.',
-    imageUrl: '/eric.jfif'
+    imageUrl: '/solvrin-website/eric.jfif'
   },
   {
     id: 'joel',
     name: 'Joel Yeo',
     role: 'Co-Founder & Managing Partner',
     bio: 'Expert in applied machine learning and Generative AI strategy. Bridges the gap between academic capabilities and enterprise requirements.',
-    imageUrl: '/joel.jfif'
+    imageUrl: '/solvrin-website/joel.jfif'
   },
   {
     id: 'hamza',
     name: 'Hamza Oksuz',
     role: 'Co-Founder & Managing Partner',
     bio: 'Lead architect for autonomous agentic workflows. Focuses on security, compliance, and deterministic execution of LLM systems.',
-    imageUrl: '/humza.jfif'
+    imageUrl: '/solvrin-website/hamza.jfif'
   }
 ];
 
