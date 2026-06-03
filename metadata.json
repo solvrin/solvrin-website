@@ -1,0 +1,8 @@
+{
+  "name": "Solvrin Group",
+  "description": "Enterprise AI & Data Implementation Consulting Firm",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
