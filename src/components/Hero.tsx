@@ -121,7 +121,7 @@ export function Hero() {
                   Video sourced from public directory.
                   Please place your video file at public/hero-video.mp4
                 */}
-                <source src="solvrin-website/hero-video.mp4" type="video/mp4" />
+                <source src="/hero-video.mp4" type="video/mp4" />
               </video>
 
               {/* Overlay minimal app UI for realism */}
