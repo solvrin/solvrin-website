@@ -11,7 +11,7 @@ export function Logo({ className = "w-8 h-8", showText = true, ...props }: LogoP
       <LogoMark className={className} {...props} />
       {showText && (
         <div className="flex flex-col justify-center">
-          <span className="font-sans font-normal text-[9.6px] tracking-[0.15em] leading-[9.6px] mb-[2px] text-white">SOLVRIN</span>
+          <span className="font-sans font-normal text-[9.6px] tracking-[0.15em] leading-[9.6px] mb-0.5 text-white">SOLVRIN</span>
           <span className="font-sans text-[0.6rem] tracking-[0.25em] text-gray-400 uppercase leading-none">Group</span>
         </div>
       )}

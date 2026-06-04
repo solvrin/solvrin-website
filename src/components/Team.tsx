@@ -46,7 +46,7 @@ export function Team() {
         style={{ rotate: rotateBg, y: yBg }}
         className="absolute top-0 -right-64 opacity-[0.1] pointer-events-none transform origin-center"
       >
-        <LogoMark className="w-[1200px] h-[1200px] text-white" />
+        <LogoMark className="w-300 h-300 text-white" />
       </motion.div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
@@ -61,14 +61,14 @@ export function Team() {
               transition={{ duration: 1.4, delay: idx * 0.2, ease: SMOOTH_EASE }}
               className="group cursor-pointer flex flex-col"
             >
-              <div className="aspect-[4/5] bg-[#111] mb-8 overflow-hidden relative rounded-sm">
+              <div className="aspect-4/5 bg-[#111] mb-8 overflow-hidden relative rounded-sm">
                 <img
                   src={member.imageUrl}
                   alt={member.name}
                   loading="lazy"
                   className="w-full h-full object-cover grayscale opacity-90 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105 transition-all duration-1000 ease-[0.16,1,0.3,1]"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
+                <div className="absolute inset-0 bg-linear-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
               </div>
 
               <div className="flex justify-between items-start mb-4">

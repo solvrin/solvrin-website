@@ -12,7 +12,7 @@ export default function App() {
     <div className="min-h-screen flex flex-col bg-black overflow-x-hidden">
       <Navbar />
 
-      <main className="flex-grow">
+      <main className="grow">
         <Hero />
         <Suspense fallback={null}>
           <Services />

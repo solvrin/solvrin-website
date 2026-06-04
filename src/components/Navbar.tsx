@@ -30,7 +30,7 @@ export function Navbar() {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-[#0a0a0a]/80 backdrop-blur-md border-b border-white/5 py-3' : 'bg-transparent py-5'
+        isScrolled ? 'bg-solvrin-black/80 backdrop-blur-md border-b border-white/5 py-3' : 'bg-transparent py-5'
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-8 flex items-center justify-between">
@@ -71,7 +71,7 @@ export function Navbar() {
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
-            className="absolute top-full left-0 right-0 bg-[#0a0a0a] border-b border-white/5 shadow-lg md:hidden"
+            className="absolute top-full left-0 right-0 bg-solvrin-black border-b border-white/5 shadow-lg md:hidden"
           >
             <div className="flex flex-col p-6 gap-4">
               {navLinks.map((link) => (

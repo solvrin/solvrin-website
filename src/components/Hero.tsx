@@ -15,7 +15,7 @@ export function Hero() {
         style={{ y: yBg, opacity: opacityBg, scale: scaleBg }}
         className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none z-0 mt-32 md:mt-16"
       >
-        <LogoMark className="w-[1200px] h-[1200px] text-white opacity-10" />
+        <LogoMark className="w-300 h-300 text-white opacity-10" />
       </motion.div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 w-full">
@@ -82,14 +82,14 @@ export function Hero() {
               initial={{ opacity: 0, y: 50, rotateX: 10, rotateY: -10 }}
               animate={{ opacity: 1, y: 0, rotateX: 0, rotateY: 0 }}
               transition={{ duration: 1.8, delay: 0.4, ease: SMOOTH_EASE }}
-              className="relative mx-auto lg:mx-0 w-[280px] h-[580px] md:w-[320px] md:h-[650px] bg-black rounded-[3rem] border-[8px] border-[#111] shadow-2xl overflow-hidden flex-shrink-0 perspective-1000 transform-gpu group"
+              className="relative mx-auto lg:mx-0 w-70 h-145 md:w-80 md:h-162.5 bg-black rounded-[3rem] border-8 border-[#111] shadow-2xl overflow-hidden shrink-0 perspective-1000 transform-gpu group"
             >
               <div className="absolute top-0 inset-x-0 h-6 bg-[#111] rounded-b-3xl w-1/3 mx-auto z-20 flex justify-center items-center">
                 <div className="w-12 h-1.5 bg-black/50 rounded-full mt-1"></div>
               </div>
 
-              <div className="absolute inset-0 bg-gradient-to-tr from-white/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-20 pointer-events-none"></div>
-              <div className="absolute -inset-full animate-spin-slow bg-gradient-to-r from-transparent via-white/5 to-transparent z-20 pointer-events-none opacity-50 mix-blend-overlay"></div>
+              <div className="absolute inset-0 bg-linear-to-tr from-white/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-20 pointer-events-none"></div>
+              <div className="absolute -inset-full animate-spin-slow bg-linear-to-r from-transparent via-white/5 to-transparent z-20 pointer-events-none opacity-50 mix-blend-overlay"></div>
 
               <div className="absolute inset-0 bg-[#111] flex items-center justify-center z-0">
                 <LogoMark className="w-32 h-32 text-gray-600 animate-pulse absolute" />
@@ -105,7 +105,7 @@ export function Hero() {
                 <source src="/hero-video.mp4" type="video/mp4" />
               </video>
 
-              <div className="absolute bottom-0 inset-x-0 p-6 bg-gradient-to-t from-black/80 via-black/40 to-transparent z-20">
+              <div className="absolute bottom-0 inset-x-0 p-6 bg-linear-to-t from-black/80 via-black/40 to-transparent z-20">
                 <div className="flex items-center gap-3 mb-3">
                   <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center">
                     <LogoMark className="w-5 h-5 text-black" />

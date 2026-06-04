@@ -69,7 +69,7 @@ export function Services() {
         style={{ y: yBg, rotate: rotateBg }}
         className="absolute top-0 right-0 -mr-64 mt-12 opacity-[0.1] pointer-events-none origin-center"
       >
-        <LogoMark className="w-[1000px] h-[1000px] text-white" />
+        <LogoMark className="w-250 h-250 text-white" />
       </motion.div>
 
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
@@ -91,7 +91,7 @@ export function Services() {
             whileInView={{ scaleX: 1, opacity: 1 }}
             viewport={{ once: false, margin: "-50px" }}
             transition={{ duration: 1, ease: SMOOTH_EASE, delay: 0.2 }}
-            className="w-24 h-[2px] bg-white mb-10 origin-left"
+            className="w-24 h-0.5 bg-white mb-10 origin-left"
           />
           <div className="overflow-hidden pb-2">
             <motion.p
@@ -117,7 +117,7 @@ export function Services() {
                 viewport={{ once: false, margin: "-50px" }}
                 transition={{ duration: 1.4, delay: idx * 0.2, ease: SMOOTH_EASE }}
                 onClick={() => setSelectedService(service)}
-                className="group cursor-pointer bg-black border border-white/5 p-10 hover:border-white/40 transition-all hover:shadow-2xl overflow-hidden relative min-h-[400px] flex flex-col justify-between"
+                className="group cursor-pointer bg-black border border-white/5 p-10 hover:border-white/40 transition-all hover:shadow-2xl overflow-hidden relative min-h-100 flex flex-col justify-between"
               >
                 <div className="absolute -bottom-16 -right-16 opacity-0 group-hover:opacity-[0.03] transition-all duration-1000 ease-[0.16,1,0.3,1] group-hover:scale-150 origin-center group-hover:-rotate-12 pointer-events-none">
                   <LogoMark className="w-80 h-80 text-white/50" />
@@ -142,7 +142,7 @@ export function Services() {
 
       <AnimatePresence>
         {selectedService && (
-          <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6">
+          <div className="fixed inset-0 z-100 flex items-center justify-center p-4 sm:p-6">
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -168,7 +168,7 @@ export function Services() {
                   <X size={24} />
                 </button>
 
-                <div className="w-16 h-[2px] bg-white mb-8" />
+                <div className="w-16 h-0.5 bg-white mb-8" />
                 <h3 className="text-4xl md:text-5xl font-bold mb-6 pr-12 tracking-tight leading-tight">{selectedService.title}</h3>
                 <p className="text-xl md:text-2xl text-gray-300 mb-16 font-light">{selectedService.description}</p>
 
@@ -188,7 +188,7 @@ export function Services() {
                           {idx + 1}
                         </div>
                         {idx !== selectedService.processSteps.length - 1 && (
-                          <div className="w-[1px] h-full bg-white/10 my-4" />
+                          <div className="w-px h-full bg-white/10 my-4" />
                         )}
                       </div>
                       <div className="pb-4 pt-1">

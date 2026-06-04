@@ -25,7 +25,7 @@ export function ContactForm() {
     }
   };
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const trimmedName = formData.name.trim();
@@ -97,12 +97,12 @@ export function ContactForm() {
             Engage with our core engineering team to map out your infrastructure integration plan.
           </p>
           <div className="space-y-4 text-gray-400">
-            <p className="font-medium text-white">contact@solvringroup.com</p>
+            <p className="font-medium text-white">info@solvringroup.com</p>
             <p className="font-mono text-sm opacity-70">[ SECURE TRANSMISSION CHANNEL ]</p>
           </div>
         </div>
 
-        <div className="bg-black p-8 md:p-12 border border-white/10 relative min-h-[500px]">
+        <div className="bg-black p-8 md:p-12 border border-white/10 relative min-h-125">
           <AnimatePresence mode="wait">
             {status !== 'SUCCESS' ? (
               <motion.form
