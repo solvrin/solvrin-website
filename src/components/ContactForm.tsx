@@ -19,30 +19,50 @@ export function ContactForm() {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setStatus('VALIDATING');
-    setErrorMsg('');
+const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+  
+  if (!formData.name || !formData.email || !formData.message) {
+    setErrorMsg('Please fill in all required fields.');
+    setStatus('ERROR');
+    return;
+  }
 
-    if (!formData.name || !formData.company || !formData.email || !formData.message) {
+  if (!validateEmail(formData.email)) {
+    setErrorMsg('Please enter a valid email address.');
+    setStatus('ERROR');
+    return;
+  }
+
+  setStatus('SUBMITTING');
+  setErrorMsg('');
+
+  try {
+    const response = await fetch('https://formspree.io/f/mpqezjvp', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        name: formData.name,
+        company: formData.company,
+        email: formData.email,
+        projectScope: formData.projectScope,
+        message: formData.message,
+      }),
+    });
+
+    if (response.ok) {
+      setStatus('SUCCESS');
+    } else {
+      setErrorMsg('Something went wrong. Please try again.');
       setStatus('ERROR');
-      setErrorMsg('All fields are required.');
-      return;
     }
-
-    if (!validateEmail(formData.email)) {
-      setStatus('ERROR');
-      setErrorMsg('Please enter a valid email architecture.');
-      return;
-    }
-
-    setStatus('SUBMITTING');
-
-    // Simulate network request
-    await new Promise(resolve => setTimeout(resolve, 1500));
-
-    setStatus('SUCCESS');
-  };
+  } catch (error) {
+    setErrorMsg('Error sending message. Please try again.');
+    setStatus('ERROR');
+  }
+};
 
   const handleReset = () => {
     setFormData({
