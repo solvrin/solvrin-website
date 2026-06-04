@@ -1,6 +1,6 @@
-import React from 'react';
+import type { SVGProps } from 'react';
 
-interface LogoProps extends React.SVGProps<SVGSVGElement> {
+interface LogoProps extends SVGProps<SVGSVGElement> {
   className?: string;
   showText?: boolean;
 }
@@ -19,29 +19,22 @@ export function Logo({ className = "w-8 h-8", showText = true, ...props }: LogoP
   );
 }
 
-export function LogoMark({ className = "w-8 h-8", ...props }: React.SVGProps<SVGSVGElement>) {
+export function LogoMark({ className = "w-8 h-8", ...props }: SVGProps<SVGSVGElement>) {
   return (
-    <svg 
-      viewBox="0 0 240 240" 
-      className={className} 
+    <svg
+      viewBox="0 0 240 240"
+      className={className}
       xmlns="http://www.w3.org/2000/svg"
       {...props}
     >
       <circle cx="120" cy="120" r="64" stroke="currentColor" strokeWidth="3" fill="none" />
-      
-      {/* Tapered horizontal needle */}
       <ellipse cx="120" cy="120" rx="100" ry="1.5" fill="currentColor" stroke="none" />
-      
-      {/* Smooth central diamond bulge */}
-      <path 
-        d="M 96 120 Q 120 113 144 120 Q 120 127 96 120 Z" 
-        fill="currentColor" 
-        stroke="none" 
+      <path
+        d="M 96 120 Q 120 113 144 120 Q 120 127 96 120 Z"
+        fill="currentColor"
+        stroke="none"
       />
-      
-      {/* Core central dot */}
       <circle cx="120" cy="120" r="5" fill="currentColor" stroke="none" />
     </svg>
   );
 }
-

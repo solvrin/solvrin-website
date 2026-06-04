@@ -2,7 +2,7 @@ export interface Service {
   id: string;
   title: string;
   description: string;
-  icon: string;
+  icon: 'brain' | 'database' | 'workflow';
   processSteps: {
     title: string;
     description: string;
@@ -25,4 +25,4 @@ export interface ContactData {
   message: string;
 }
 
-export type FormStatus = 'IDLE' | 'VALIDATING' | 'SUBMITTING' | 'SUCCESS' | 'ERROR';
+export type FormStatus = 'IDLE' | 'SUBMITTING' | 'SUCCESS' | 'ERROR';
