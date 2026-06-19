@@ -40,7 +40,7 @@ export function Team() {
   const yBg = useTransform(scrollYProgress, [0, 1], [300, -100]);
 
   return (
-    <section id="team" ref={containerRef} className="pt-10 pb-32 bg-black relative overflow-hidden">
+    <section id="team" ref={containerRef} className="pt-16 pb-32 bg-black relative overflow-hidden">
       <motion.div
         style={{ rotate: rotateBg, y: yBg }}
         className="absolute top-0 -right-64 opacity-[0.1] pointer-events-none transform origin-center"
@@ -51,17 +51,15 @@ export function Team() {
       <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
 
         <div className="mb-16">
-          <div className="overflow-hidden pb-4">
-            <motion.h2
-              initial={{ y: "130%", opacity: 0, filter: "blur(10px)" }}
-              whileInView={{ y: 0, opacity: 1, filter: "blur(0px)" }}
-              viewport={{ once: false, margin: "-50px" }}
-              transition={{ duration: 1.2, ease: SMOOTH_EASE }}
-              className="text-4xl md:text-5xl lg:text-7xl font-bold tracking-tighter"
-            >
-              Meet the Partners
-            </motion.h2>
-          </div>
+          <motion.h2
+            initial={{ opacity: 0, filter: "blur(10px)", y: 20 }}
+            whileInView={{ opacity: 1, filter: "blur(0px)", y: 0 }}
+            viewport={{ once: false, margin: "-50px" }}
+            transition={{ duration: 1.2, ease: SMOOTH_EASE }}
+            className="text-4xl md:text-5xl lg:text-7xl font-bold tracking-tighter"
+          >
+            Meet the Partners
+          </motion.h2>
           <motion.div
             initial={{ scaleX: 0, opacity: 0 }}
             whileInView={{ scaleX: 1, opacity: 1 }}
@@ -79,7 +77,7 @@ export function Team() {
               whileInView={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
               viewport={{ once: false, margin: "-50px" }}
               transition={{ duration: 1.4, delay: idx * 0.2, ease: SMOOTH_EASE }}
-              className="group cursor-pointer flex flex-col"
+              className="group flex flex-col"
             >
               <div className="aspect-4/5 bg-[#111] mb-8 overflow-hidden relative rounded-sm">
                 <img

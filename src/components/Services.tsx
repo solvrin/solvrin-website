@@ -116,8 +116,7 @@ export function Services() {
                 whileInView={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
                 viewport={{ once: false, margin: "-50px" }}
                 transition={{ duration: 1.4, delay: idx * 0.2, ease: SMOOTH_EASE }}
-                onClick={() => setSelectedService(service)}
-                className="group cursor-pointer bg-black border border-white/5 p-10 hover:border-white/40 transition-all hover:shadow-2xl overflow-hidden relative min-h-100 flex flex-col justify-between"
+                className="group bg-black border border-white/5 p-10 hover:border-white/40 transition-all hover:shadow-2xl overflow-hidden relative min-h-100 flex flex-col justify-between"
               >
                 <div className="absolute -bottom-16 -right-16 opacity-0 group-hover:opacity-[0.03] transition-all duration-1000 ease-[0.16,1,0.3,1] group-hover:scale-150 origin-center group-hover:-rotate-12 pointer-events-none">
                   <LogoMark className="w-80 h-80 text-white/50" />
@@ -131,9 +130,12 @@ export function Services() {
                   <p className="text-gray-400 text-lg mb-8 z-10 relative leading-relaxed">{service.description}</p>
                 </div>
 
-                <div className="flex items-center text-sm font-bold uppercase tracking-widest gap-3 opacity-60 group-hover:opacity-100 transition-all duration-500 ease-out z-10 relative mt-auto border-t border-white/5 pt-6">
+                <button
+                  onClick={() => setSelectedService(service)}
+                  className="flex items-center text-sm font-bold uppercase tracking-widest gap-3 opacity-60 group-hover:opacity-100 transition-all duration-500 ease-out z-10 relative mt-auto border-t border-white/5 pt-6 cursor-pointer w-full text-left"
+                >
                   Primary Scope <ChevronDown size={18} />
-                </div>
+                </button>
               </motion.div>
             );
           })}

@@ -22,6 +22,7 @@ export function Navbar() {
   };
 
   const navLinks = [
+    { name: 'Home', id: 'hero' },
     { name: 'Architecture', id: 'hero' },
     { name: 'Capabilities', id: 'services' },
     { name: 'Partners', id: 'team' },

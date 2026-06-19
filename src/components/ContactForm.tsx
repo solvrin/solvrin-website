@@ -91,7 +91,7 @@ export function ContactForm() {
       <div className="max-w-7xl mx-auto px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-16">
 
         <div>
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white">Initiate Protocol</h2>
+          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white">Work With Us</h2>
           <div className="w-20 h-1 bg-white mb-12" />
           <p className="text-xl text-gray-300 mb-8 max-w-md">
             Engage with our core engineering team to map out your infrastructure integration plan.
