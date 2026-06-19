@@ -1,7 +1,7 @@
 import { useState, useRef } from 'react';
 import { motion, AnimatePresence, useScroll, useTransform } from 'motion/react';
 import { Service } from '../types';
-import { BrainCircuit, Database, GitMerge, X, ChevronRight } from 'lucide-react';
+import { BrainCircuit, Database, GitMerge, X, ChevronDown } from 'lucide-react';
 import { LogoMark } from './Logo';
 import { SMOOTH_EASE } from '../utils';
 
@@ -12,10 +12,10 @@ const servicesData: Service[] = [
     description: 'Bespoke large language model deployment aligned with your proprietary data taxonomies.',
     icon: 'brain',
     processSteps: [
-      { title: 'Readiness Audit', description: 'Assessing your data maturity and infrastructure for AI integration.' },
-      { title: 'Model Selection', description: 'Choosing between open-weight or proprietary models based on latency and cost.' },
-      { title: 'RAG Pipeline Deployment', description: 'Building secure Retrieval-Augmented Generation systems over enterprise data.' },
-      { title: 'RLHF Fine-Tuning', description: 'Aligning model outputs to your specific domain expertise and tone.' }
+      { title: 'Readiness Audit', description: 'Assessing data maturity and infrastructure readiness for AI deployment.' },
+      { title: 'Model Selection', description: 'Evaluating open-weight and proprietary models by latency, cost, and fit.' },
+      { title: 'RAG Pipeline Deployment', description: 'Building secure retrieval-augmented generation pipelines over enterprise data.' },
+      { title: 'RLHF Fine-Tuning', description: 'Aligning model outputs to domain-specific expertise and operational tone.' }
     ]
   },
   {
@@ -74,7 +74,7 @@ export function Services() {
 
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
 
-        <div className="mb-24 md:w-2/3">
+        <div className="mb-12 md:w-2/3">
           <div className="overflow-hidden pb-4">
             <motion.h2
               initial={{ y: "130%", opacity: 0, filter: "blur(10px)" }}
@@ -131,8 +131,8 @@ export function Services() {
                   <p className="text-gray-400 text-lg mb-8 z-10 relative leading-relaxed">{service.description}</p>
                 </div>
 
-                <div className="flex items-center text-sm font-bold uppercase tracking-widest gap-3 opacity-60 group-hover:opacity-100 group-hover:translate-x-2 transition-all duration-500 ease-out z-10 relative mt-auto border-t border-white/5 pt-6">
-                  Inspect Process <ChevronRight size={18} className="transform group-hover:translate-x-1 transition-transform" />
+                <div className="flex items-center text-sm font-bold uppercase tracking-widest gap-3 opacity-60 group-hover:opacity-100 transition-all duration-500 ease-out z-10 relative mt-auto border-t border-white/5 pt-6">
+                  Primary Scope <ChevronDown size={18} />
                 </div>
               </motion.div>
             );

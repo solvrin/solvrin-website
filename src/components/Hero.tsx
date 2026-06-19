@@ -1,3 +1,4 @@
+import { useState, useEffect, useRef } from 'react';
 import { motion, useScroll, useTransform } from 'motion/react';
 import { LogoMark } from './Logo';
 import { SMOOTH_EASE, scrollToElement } from '../utils';
@@ -7,6 +8,21 @@ export function Hero() {
   const yBg = useTransform(scrollY, [0, 1000], [0, 300]);
   const opacityBg = useTransform(scrollY, [0, 600], [0.03, 0]);
   const scaleBg = useTransform(scrollY, [0, 800], [1, 1.15]);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener('resize', check);
+    return () => window.removeEventListener('resize', check);
+  }, []);
+
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.playbackRate = 0.75;
+    }
+  }, []);
 
   return (
     <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-28 pb-20">
@@ -27,7 +43,7 @@ export function Hero() {
                 <motion.h1
                   initial={{ y: "120%", opacity: 0, filter: "blur(10px)" }}
                   animate={{ y: 0, opacity: 1, filter: "blur(0px)" }}
-                  transition={{ duration: 1.4, ease: SMOOTH_EASE, delay: 0.1 }}
+                  transition={{ duration: isMobile ? 2.0 : 1.4, ease: SMOOTH_EASE, delay: 0.1 }}
                   className="text-5xl md:text-7xl lg:text-[6.5rem] font-bold tracking-tighter leading-[1.05]"
                 >
                   Architecting the
@@ -37,7 +53,7 @@ export function Hero() {
                 <motion.h1
                   initial={{ y: "120%", opacity: 0, filter: "blur(10px)" }}
                   animate={{ y: 0, opacity: 1, filter: "blur(0px)" }}
-                  transition={{ duration: 1.4, ease: SMOOTH_EASE, delay: 0.2 }}
+                  transition={{ duration: isMobile ? 2.0 : 1.4, ease: SMOOTH_EASE, delay: 0.2 }}
                   className="text-5xl md:text-7xl lg:text-[6.5rem] font-bold tracking-tighter leading-[1.05] text-gray-400"
                 >
                   Intelligence Era.
@@ -49,7 +65,7 @@ export function Hero() {
               <motion.p
                 initial={{ y: "150%", opacity: 0, filter: "blur(10px)" }}
                 animate={{ y: 0, opacity: 1, filter: "blur(0px)" }}
-                transition={{ duration: 1.4, delay: 0.3, ease: SMOOTH_EASE }}
+                transition={{ duration: isMobile ? 2.0 : 1.4, delay: 0.3, ease: SMOOTH_EASE }}
                 className="text-lg md:text-xl text-gray-300 leading-relaxed font-light"
               >
                 Solvrin Group delivers enterprise-grade AI integration and rigorous data strategy. We turn complex infrastructure into decisive operational advantage.
@@ -66,7 +82,7 @@ export function Hero() {
                 onClick={() => scrollToElement('contact')}
                 className="w-full sm:w-auto bg-white text-black px-8 py-4 text-sm uppercase tracking-widest font-semibold hover:bg-gray-200 transition-colors"
               >
-                Initiate Discovery
+                Work With Us
               </button>
               <button
                 onClick={() => scrollToElement('services')}
@@ -96,6 +112,7 @@ export function Hero() {
               </div>
 
               <video
+                ref={videoRef}
                 autoPlay
                 muted
                 loop

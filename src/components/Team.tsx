@@ -1,7 +1,6 @@
 import { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'motion/react';
 import { TeamMember } from '../types';
-import { ArrowUpRight } from 'lucide-react';
 import { LogoMark } from './Logo';
 import { SMOOTH_EASE } from '../utils';
 
@@ -51,6 +50,27 @@ export function Team() {
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
 
+        <div className="mb-16">
+          <div className="overflow-hidden pb-4">
+            <motion.h2
+              initial={{ y: "130%", opacity: 0, filter: "blur(10px)" }}
+              whileInView={{ y: 0, opacity: 1, filter: "blur(0px)" }}
+              viewport={{ once: false, margin: "-50px" }}
+              transition={{ duration: 1.2, ease: SMOOTH_EASE }}
+              className="text-4xl md:text-5xl lg:text-7xl font-bold tracking-tighter"
+            >
+              Meet the Partners
+            </motion.h2>
+          </div>
+          <motion.div
+            initial={{ scaleX: 0, opacity: 0 }}
+            whileInView={{ scaleX: 1, opacity: 1 }}
+            viewport={{ once: false, margin: "-50px" }}
+            transition={{ duration: 1, ease: SMOOTH_EASE, delay: 0.2 }}
+            className="w-24 h-0.5 bg-white mt-4 origin-left"
+          />
+        </div>
+
         <div className="grid grid-cols-1 md:grid-cols-3 gap-x-12 gap-y-16">
           {teamMembers.map((member, idx) => (
             <motion.div
@@ -73,21 +93,11 @@ export function Team() {
 
               <div className="flex justify-between items-start mb-4">
                 <h3 className="text-3xl font-bold group-hover:text-gray-300 transition-colors tracking-tight">{member.name}</h3>
-                <ArrowUpRight className="opacity-0 group-hover:opacity-100 transition-all duration-500 ease-[0.16,1,0.3,1] transform -translate-x-4 translate-y-4 group-hover:translate-x-0 group-hover:translate-y-0 text-white" size={28} />
               </div>
 
-              <div className="relative overflow-hidden mb-6 h-6">
-                <div className="absolute top-0 left-0 w-full transform group-hover:-translate-y-full transition-transform duration-500 ease-[0.16,1,0.3,1]">
-                  <p className="text-sm font-bold uppercase tracking-[0.15em] text-gray-400">
-                     {member.role}
-                  </p>
-                </div>
-                <div className="absolute top-full left-0 w-full transform group-hover:-translate-y-full transition-transform duration-500 ease-[0.16,1,0.3,1]">
-                  <p className="text-sm font-bold uppercase tracking-[0.15em] text-white">
-                     {member.role}
-                  </p>
-                </div>
-              </div>
+              <p className="text-sm font-bold uppercase tracking-[0.15em] text-gray-400 mb-6">
+                {member.role}
+              </p>
 
               <p className="text-gray-400 leading-relaxed group-hover:text-white transition-colors duration-500 text-lg font-light">
                 {member.bio}

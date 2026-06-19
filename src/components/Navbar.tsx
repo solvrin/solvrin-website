@@ -52,7 +52,7 @@ export function Navbar() {
             onClick={() => handleNav('contact')}
             className="bg-white text-black px-5 py-2.5 rounded-none text-sm font-medium hover:bg-gray-200 transition-colors"
           >
-            Work With Us
+            Contact
           </button>
         </nav>
 
@@ -87,7 +87,7 @@ export function Navbar() {
                 onClick={() => handleNav('contact')}
                 className="bg-white text-black px-5 py-3 rounded-none text-base font-medium w-full mt-2"
               >
-                Work With Us
+                Contact
               </button>
             </div>
           </motion.div>
