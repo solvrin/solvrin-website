@@ -1,7 +1,7 @@
 import { useState, useRef } from 'react';
 import { motion, AnimatePresence, useScroll, useTransform } from 'motion/react';
 import { Service } from '../types';
-import { BrainCircuit, Database, GitMerge, X, ChevronDown } from 'lucide-react';
+import { BrainCircuit, Database, GitMerge, Plus } from 'lucide-react';
 import { LogoMark } from './Logo';
 import { SMOOTH_EASE } from '../utils';
 
@@ -51,7 +51,7 @@ const IconMap = {
 } as const;
 
 export function Services() {
-  const [selectedService, setSelectedService] = useState<Service | null>(null);
+  const [expandedId, setExpandedId] = useState<string | null>(null);
   const containerRef = useRef<HTMLElement>(null);
 
   const { scrollYProgress } = useScroll({
@@ -61,6 +61,8 @@ export function Services() {
 
   const yBg = useTransform(scrollYProgress, [0, 1], [150, -150]);
   const rotateBg = useTransform(scrollYProgress, [0, 1], [-20, 20]);
+
+  const expandedService = servicesData.find(s => s.id === expandedId) ?? null;
 
   return (
     <section id="services" ref={containerRef} className="pt-32 pb-10 bg-[#050505] relative overflow-hidden">
@@ -109,102 +111,74 @@ export function Services() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {servicesData.map((service, idx) => {
             const Icon = IconMap[service.icon];
+            const isActive = expandedId === service.id;
             return (
-               <motion.div
+              <motion.div
                 key={service.id}
                 initial={{ opacity: 0, y: 120, scale: 0.95, filter: "blur(10px)" }}
                 whileInView={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
                 viewport={{ once: false, margin: "-50px" }}
                 transition={{ duration: 1.4, delay: idx * 0.2, ease: SMOOTH_EASE }}
-                className="group bg-black border border-white/5 p-10 hover:border-white/40 transition-all hover:shadow-2xl overflow-hidden relative min-h-100 flex flex-col justify-between"
+                onClick={() => setExpandedId(isActive ? null : service.id)}
+                className={`group cursor-pointer bg-black border p-10 transition-all hover:shadow-2xl overflow-hidden relative min-h-100 flex flex-col ${
+                  isActive ? 'border-white/40' : 'border-white/5 hover:border-white/40'
+                }`}
               >
-                <div className="absolute -bottom-16 -right-16 opacity-0 group-hover:opacity-[0.03] transition-all duration-1000 ease-[0.16,1,0.3,1] group-hover:scale-150 origin-center group-hover:-rotate-12 pointer-events-none">
+                <div className="absolute -bottom-16 -right-16 opacity-0 group-hover:opacity-[0.03] transition-all duration-1000 group-hover:scale-150 origin-center group-hover:-rotate-12 pointer-events-none">
                   <LogoMark className="w-80 h-80 text-white/50" />
+                </div>
+
+                <div
+                  className={`absolute top-6 right-6 w-6 h-6 flex items-center justify-center transition-all duration-300 z-10 ${
+                    isActive ? 'rotate-45 text-white' : 'text-gray-600 group-hover:text-gray-400'
+                  }`}
+                >
+                  <Plus size={16} strokeWidth={2} />
                 </div>
 
                 <div>
                   <div className="mb-8 p-5 bg-[#111] inline-block rounded-full relative z-10 transition-transform duration-700 ease-out group-hover:-translate-y-2 group-hover:bg-white group-hover:text-black">
                     <Icon size={32} className="currentColor transition-all" strokeWidth={1} />
                   </div>
-                  <h3 className="text-3xl font-bold mb-6 z-10 relative tracking-tight leading-tight">{service.title}</h3>
-                  <p className="text-gray-400 text-lg mb-8 z-10 relative leading-relaxed">{service.description}</p>
+                  <h3 className="text-3xl font-bold mb-6 z-10 relative tracking-tight leading-tight pr-8">{service.title}</h3>
+                  <p className="text-gray-400 text-lg z-10 relative leading-relaxed">{service.description}</p>
                 </div>
-
-                <button
-                  onClick={() => setSelectedService(service)}
-                  className="flex items-center text-sm font-bold uppercase tracking-widest gap-3 opacity-60 group-hover:opacity-100 transition-all duration-500 ease-out z-10 relative mt-auto border-t border-white/5 pt-6 cursor-pointer w-full text-left"
-                >
-                  Primary Scope <ChevronDown size={18} />
-                </button>
               </motion.div>
             );
           })}
         </div>
-      </div>
 
-      <AnimatePresence>
-        {selectedService && (
-          <div className="fixed inset-0 z-100 flex items-center justify-center p-4 sm:p-6">
+        <AnimatePresence mode="wait">
+          {expandedService && (
             <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.5, ease: SMOOTH_EASE }}
-              onClick={() => setSelectedService(null)}
-              className="absolute inset-0 bg-black/90 backdrop-blur-2xl"
-            />
-
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9, y: 40, filter: "blur(10px)" }}
-              animate={{ opacity: 1, scale: 1, y: 0, filter: "blur(0px)" }}
-              exit={{ opacity: 0, scale: 0.95, y: 20, filter: "blur(10px)" }}
-              transition={{ duration: 0.8, ease: SMOOTH_EASE }}
-              className="relative w-full max-w-4xl bg-black border border-white/10 overflow-hidden shadow-2xl"
+              key={expandedService.id}
+              initial={{ opacity: 0, y: -16 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -16 }}
+              transition={{ duration: 0.45, ease: SMOOTH_EASE }}
+              className="mt-8 bg-black border border-white/10 p-10 md:p-12"
             >
-              <div className="p-10 md:p-16 max-h-[85vh] overflow-y-auto">
-                <button
-                  onClick={() => setSelectedService(null)}
-                  aria-label="Close modal"
-                  className="absolute top-8 right-8 p-3 bg-[#111] text-gray-400 hover:text-white hover:bg-[#222] rounded-full transition-all"
-                >
-                  <X size={24} />
-                </button>
-
-                <div className="w-16 h-0.5 bg-white mb-8" />
-                <h3 className="text-4xl md:text-5xl font-bold mb-6 pr-12 tracking-tight leading-tight">{selectedService.title}</h3>
-                <p className="text-xl md:text-2xl text-gray-300 mb-16 font-light">{selectedService.description}</p>
-
-                <h4 className="text-sm uppercase tracking-widest font-bold mb-10 text-white">Deployment Architecture</h4>
-
-                <div className="space-y-12">
-                  {selectedService.processSteps.map((step, idx) => (
-                    <motion.div
-                      key={step.title}
-                      initial={{ opacity: 0, x: -30 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.8, delay: 0.2 + (idx * 0.1), ease: SMOOTH_EASE }}
-                      className="flex gap-8 group/step"
-                    >
-                      <div className="flex flex-col items-center">
-                        <div className="w-12 h-12 rounded-full bg-[#111] border border-white/10 flex items-center justify-center text-lg font-bold shrink-0 text-gray-400 group-hover/step:bg-white group-hover/step:text-black transition-colors duration-500">
-                          {idx + 1}
-                        </div>
-                        {idx !== selectedService.processSteps.length - 1 && (
-                          <div className="w-px h-full bg-white/10 my-4" />
-                        )}
-                      </div>
-                      <div className="pb-4 pt-1">
-                        <h5 className="text-2xl font-bold mb-3">{step.title}</h5>
-                        <p className="text-lg text-gray-400 leading-relaxed font-light">{step.description}</p>
-                      </div>
-                    </motion.div>
-                  ))}
-                </div>
+              <p className="text-xs font-bold uppercase tracking-widest text-gray-500 mb-6">
+                {expandedService.title}
+              </p>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                {expandedService.processSteps.map((step, idx) => (
+                  <div key={step.title} className="flex gap-5">
+                    <div className="w-8 h-8 rounded-full bg-[#111] border border-white/10 flex items-center justify-center text-sm font-bold shrink-0 text-gray-400 mt-0.5">
+                      {idx + 1}
+                    </div>
+                    <div>
+                      <h5 className="text-base font-bold mb-1 tracking-tight">{step.title}</h5>
+                      <p className="text-gray-400 leading-relaxed font-light text-sm">{step.description}</p>
+                    </div>
+                  </div>
+                ))}
               </div>
             </motion.div>
-          </div>
-        )}
-      </AnimatePresence>
+          )}
+        </AnimatePresence>
+
+      </div>
     </section>
   );
 }

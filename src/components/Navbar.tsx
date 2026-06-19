@@ -16,6 +16,16 @@ export function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && isMobileMenuOpen) {
+        setIsMobileMenuOpen(false);
+      }
+    };
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [isMobileMenuOpen]);
+
   const handleNav = (id: string) => {
     setIsMobileMenuOpen(false);
     scrollToElement(id);
@@ -23,7 +33,6 @@ export function Navbar() {
 
   const navLinks = [
     { name: 'Home', id: 'hero' },
-    { name: 'Architecture', id: 'hero' },
     { name: 'Capabilities', id: 'services' },
     { name: 'Partners', id: 'team' },
   ];
@@ -61,6 +70,7 @@ export function Navbar() {
           className="md:hidden p-2 text-white"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
+          aria-expanded={isMobileMenuOpen}
         >
           {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>

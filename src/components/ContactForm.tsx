@@ -25,7 +25,7 @@ export function ContactForm() {
     }
   };
 
-  const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const trimmedName = formData.name.trim();
@@ -92,13 +92,12 @@ export function ContactForm() {
 
         <div>
           <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white">Work With Us</h2>
-          <div className="w-20 h-1 bg-white mb-12" />
+          <div className="w-24 h-0.5 bg-white mb-12" />
           <p className="text-xl text-gray-300 mb-8 max-w-md">
             Engage with our core engineering team to map out your infrastructure integration plan.
           </p>
           <div className="space-y-4 text-gray-400">
-            <p className="font-medium text-white">info@solvringroup.com</p>
-            <p className="font-mono text-sm opacity-70">[ SECURE TRANSMISSION CHANNEL ]</p>
+            <a href="mailto:info@solvringroup.com" className="font-medium text-white hover:text-gray-300 transition-colors cursor-pointer">info@solvringroup.com</a>
           </div>
         </div>
 
@@ -119,6 +118,7 @@ export function ContactForm() {
                     <input
                       id="contact-name"
                       type="text"
+                      required
                       value={formData.name}
                       onChange={e => handleChange('name', e.target.value)}
                       disabled={isSubmitting}
@@ -143,6 +143,7 @@ export function ContactForm() {
                   <input
                     id="contact-email"
                     type="email"
+                    required
                     value={formData.email}
                     onChange={e => handleChange('email', e.target.value)}
                     disabled={isSubmitting}
@@ -155,7 +156,7 @@ export function ContactForm() {
                   <select
                     id="contact-scope"
                     value={formData.projectScope}
-                    onChange={e => handleChange('projectScope', e.target.value)}
+                    onChange={e => handleChange('projectScope', e.target.value as ContactData['projectScope'])}
                     disabled={isSubmitting}
                     className="w-full border-b border-white/20 py-3 bg-transparent text-white focus:outline-none focus:border-white transition-colors appearance-none rounded-none cursor-pointer"
                   >
@@ -170,6 +171,7 @@ export function ContactForm() {
                   <label htmlFor="contact-message" className="text-sm font-bold uppercase tracking-widest block text-gray-300">Project Abstract</label>
                   <textarea
                     id="contact-message"
+                    required
                     value={formData.message}
                     onChange={e => handleChange('message', e.target.value)}
                     disabled={isSubmitting}
@@ -190,7 +192,7 @@ export function ContactForm() {
                   aria-label={isSubmitting ? 'Submitting form' : 'Submit contact form'}
                   className="w-full bg-white text-black py-4 font-bold uppercase tracking-widest hover:bg-gray-200 transition-colors disabled:opacity-50 flex justify-center items-center h-14"
                 >
-                  {isSubmitting ? <Loader2 className="animate-spin text-black" size={20} /> : 'Transmit Directive'}
+                  {isSubmitting ? <Loader2 className="animate-spin text-black" size={20} /> : 'Send Message'}
                 </button>
               </motion.form>
             ) : (
@@ -203,15 +205,15 @@ export function ContactForm() {
                 <div className="w-16 h-16 bg-[#111] border border-white/10 rounded-full flex items-center justify-center mb-6">
                   <CheckCircle2 size={32} className="text-white" strokeWidth={1.5} />
                 </div>
-                <h3 className="text-3xl font-bold mb-4 text-white">Transmission Received</h3>
+                <h3 className="text-3xl font-bold mb-4 text-white">Message Sent</h3>
                 <p className="text-gray-400 mb-8 max-w-sm">
-                  Your project scope has been securely logged. An engineering principal will review your requirements and respond shortly.
+                  We've received your project details. An engineering partner will review your requirements and be in touch shortly.
                 </p>
                 <button
                   onClick={handleReset}
                   className="border border-white/20 px-8 py-3 font-semibold uppercase tracking-widest text-sm hover:border-white hover:bg-white/5 transition-colors text-white"
                 >
-                  Acknowledge
+                  Send another
                 </button>
               </motion.div>
             )}
