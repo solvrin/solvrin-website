@@ -11,6 +11,7 @@ export function Hero() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isMobile, setIsMobile] = useState(false);
   const [progress, setProgress] = useState(0);
+  const [barOpacity, setBarOpacity] = useState(1);
 
   useEffect(() => {
     const check = () => setIsMobile(window.innerWidth < 768);
@@ -24,7 +25,10 @@ export function Hero() {
     if (!video) return;
     video.playbackRate = 0.60;
     const onTimeUpdate = () => {
-      if (video.duration) setProgress(video.currentTime / video.duration * 100);
+      if (video.duration) {
+        setProgress(video.currentTime / video.duration * 100);
+        setBarOpacity(video.duration - video.currentTime < 0.5 ? 0 : 1);
+      }
     };
     video.addEventListener('timeupdate', onTimeUpdate);
     return () => video.removeEventListener('timeupdate', onTimeUpdate);
@@ -137,8 +141,8 @@ export function Hero() {
                     <p className="text-white text-sm font-bold">Solvrin Group</p>
                   </div>
                 </div>
-                <div className="h-1 bg-white/20 rounded-full overflow-hidden">
-                  <div className="h-full bg-white rounded-full transition-none" style={{ width: `${progress}%` }}></div>
+                <div className="h-0.5 bg-white/20 rounded-full overflow-hidden">
+                  <div className="h-full bg-white rounded-full transition-all duration-300 ease-linear" style={{ width: `${progress}%`, opacity: barOpacity, transition: 'width 300ms linear, opacity 400ms ease' }}></div>
                 </div>
               </div>
             </motion.div>

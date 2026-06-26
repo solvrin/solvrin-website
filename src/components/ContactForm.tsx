@@ -10,7 +10,7 @@ export function ContactForm() {
     name: '',
     company: '',
     email: '',
-    projectScope: 'AI Strategy',
+    projectScope: '',
     message: ''
   });
 
@@ -77,7 +77,7 @@ export function ContactForm() {
       name: '',
       company: '',
       email: '',
-      projectScope: 'AI Strategy',
+      projectScope: '',
       message: ''
     });
     setStatus('IDLE');
@@ -85,6 +85,8 @@ export function ContactForm() {
   };
 
   const isSubmitting = status === 'SUBMITTING';
+  const isFormIncomplete = !formData.name.trim() || !formData.company.trim() || !formData.email.trim() || !EMAIL_REGEX.test(formData.email) || !formData.projectScope;
+  const isDisabled = isSubmitting || isFormIncomplete;
 
   return (
     <section id="contact" className="py-32 bg-[#050505] border-t border-white/5">
@@ -161,6 +163,7 @@ export function ContactForm() {
                       disabled={isSubmitting}
                       className="w-full border-b border-white/20 py-3 bg-transparent text-white focus:outline-none focus:border-white transition-colors appearance-none rounded-none cursor-pointer pr-8"
                     >
+                      <option value="" disabled className="bg-[#111] text-gray-500">Select</option>
                       <option value="AI Strategy" className="bg-[#111] text-white">AI Strategy & LLMs</option>
                       <option value="Data Architecture" className="bg-[#111] text-white">Data Architecture & Cloud</option>
                       <option value="Agentic Workflows" className="bg-[#111] text-white">Agentic Workflows</option>
@@ -193,9 +196,9 @@ export function ContactForm() {
 
                 <button
                   type="submit"
-                  disabled={isSubmitting}
+                  disabled={isDisabled}
                   aria-label={isSubmitting ? 'Submitting form' : 'Submit contact form'}
-                  className="w-full bg-white text-black py-4 font-bold uppercase tracking-widest hover:bg-gray-200 transition-colors disabled:opacity-50 flex justify-center items-center h-14"
+                  className={`w-full py-4 font-bold uppercase tracking-widest transition-colors flex justify-center items-center h-14 ${isDisabled ? 'bg-gray-600 text-gray-400 cursor-not-allowed' : 'bg-white text-black hover:bg-gray-200'}`}
                 >
                   {isSubmitting ? <Loader2 className="animate-spin text-black" size={20} /> : 'Send Message'}
                 </button>

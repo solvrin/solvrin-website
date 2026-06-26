@@ -22,7 +22,7 @@ export interface ContactData {
   name: string;
   company: string;
   email: string;
-  projectScope: 'AI Strategy' | 'Data Architecture' | 'Agentic Workflows' | 'Other';
+  projectScope: '' | 'AI Strategy' | 'Data Architecture' | 'Agentic Workflows' | 'Other';
   message: string;
 }
 
