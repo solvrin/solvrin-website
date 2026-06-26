@@ -10,6 +10,7 @@ export function Hero() {
   const scaleBg = useTransform(scrollY, [0, 800], [1, 1.15]);
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isMobile, setIsMobile] = useState(false);
+  const [progress, setProgress] = useState(0);
 
   useEffect(() => {
     const check = () => setIsMobile(window.innerWidth < 768);
@@ -19,9 +20,14 @@ export function Hero() {
   }, []);
 
   useEffect(() => {
-    if (videoRef.current) {
-      videoRef.current.playbackRate = 0.75;
-    }
+    const video = videoRef.current;
+    if (!video) return;
+    video.playbackRate = 0.60;
+    const onTimeUpdate = () => {
+      if (video.duration) setProgress(video.currentTime / video.duration * 100);
+    };
+    video.addEventListener('timeupdate', onTimeUpdate);
+    return () => video.removeEventListener('timeupdate', onTimeUpdate);
   }, []);
 
   return (
@@ -31,7 +37,7 @@ export function Hero() {
         style={{ y: yBg, opacity: opacityBg, scale: scaleBg }}
         className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none z-0 mt-32 md:mt-16"
       >
-        <LogoMark className="w-300 h-300 text-white opacity-10" />
+        <img src="/BlackLogoNoName.png" alt="" className="w-300 h-300 opacity-10" style={{ filter: 'invert(1)' }} />
       </motion.div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 w-full">
@@ -132,7 +138,7 @@ export function Hero() {
                   </div>
                 </div>
                 <div className="h-1 bg-white/20 rounded-full overflow-hidden">
-                  <div className="h-full w-1/3 bg-white rounded-full"></div>
+                  <div className="h-full bg-white rounded-full transition-none" style={{ width: `${progress}%` }}></div>
                 </div>
               </div>
             </motion.div>

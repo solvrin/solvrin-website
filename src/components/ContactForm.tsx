@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { ContactData, FormStatus } from '../types';
-import { Loader2, CheckCircle2 } from 'lucide-react';
+import { Loader2, CheckCircle2, ChevronDown } from 'lucide-react';
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -153,22 +153,25 @@ export function ContactForm() {
 
                 <div className="space-y-2">
                   <label htmlFor="contact-scope" className="text-sm font-bold uppercase tracking-widest block text-gray-300">Primary Scope</label>
-                  <select
-                    id="contact-scope"
-                    value={formData.projectScope}
-                    onChange={e => handleChange('projectScope', e.target.value as ContactData['projectScope'])}
-                    disabled={isSubmitting}
-                    className="w-full border-b border-white/20 py-3 bg-transparent text-white focus:outline-none focus:border-white transition-colors appearance-none rounded-none cursor-pointer"
-                  >
-                    <option value="AI Strategy" className="bg-[#111] text-white">AI Strategy & LLMs</option>
-                    <option value="Data Architecture" className="bg-[#111] text-white">Data Architecture & Cloud</option>
-                    <option value="Agentic Workflows" className="bg-[#111] text-white">Agentic Workflows</option>
-                    <option value="Other" className="bg-[#111] text-white">Other / Unsure</option>
-                  </select>
+                  <div className="relative">
+                    <select
+                      id="contact-scope"
+                      value={formData.projectScope}
+                      onChange={e => handleChange('projectScope', e.target.value as ContactData['projectScope'])}
+                      disabled={isSubmitting}
+                      className="w-full border-b border-white/20 py-3 bg-transparent text-white focus:outline-none focus:border-white transition-colors appearance-none rounded-none cursor-pointer pr-8"
+                    >
+                      <option value="AI Strategy" className="bg-[#111] text-white">AI Strategy & LLMs</option>
+                      <option value="Data Architecture" className="bg-[#111] text-white">Data Architecture & Cloud</option>
+                      <option value="Agentic Workflows" className="bg-[#111] text-white">Agentic Workflows</option>
+                      <option value="Other" className="bg-[#111] text-white">Other / Unsure</option>
+                    </select>
+                    <ChevronDown size={14} className="absolute right-0 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" strokeWidth={2} />
+                  </div>
                 </div>
 
                 <div className="space-y-2">
-                  <label htmlFor="contact-message" className="text-sm font-bold uppercase tracking-widest block text-gray-300">Project Abstract</label>
+                  <label htmlFor="contact-message" className="text-sm font-bold uppercase tracking-widest block text-gray-300">Additional Details</label>
                   <textarea
                     id="contact-message"
                     required
@@ -176,8 +179,10 @@ export function ContactForm() {
                     onChange={e => handleChange('message', e.target.value)}
                     disabled={isSubmitting}
                     rows={4}
+                    maxLength={500}
                     className="w-full border-b border-white/20 py-3 bg-transparent text-white focus:outline-none focus:border-white transition-colors resize-none rounded-none"
                   />
+                  <p className="text-xs text-gray-500 text-right font-mono">{formData.message.length} / 500</p>
                 </div>
 
                 {status === 'ERROR' && (

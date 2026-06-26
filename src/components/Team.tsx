@@ -2,7 +2,6 @@ import { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'motion/react';
 import { TeamMember } from '../types';
 import { Linkedin } from 'lucide-react';
-import { LogoMark } from './Logo';
 import { SMOOTH_EASE } from '../utils';
 
 const teamMembers: TeamMember[] = [
@@ -49,7 +48,7 @@ export function Team() {
         style={{ rotate: rotateBg, y: yBg }}
         className="absolute top-0 -right-64 opacity-[0.1] pointer-events-none transform origin-center"
       >
-        <LogoMark className="w-300 h-300 text-white" />
+        <img src="/BlackLogoNoName.png" alt="" className="w-300 h-300" style={{ filter: 'invert(1)' }} />
       </motion.div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">

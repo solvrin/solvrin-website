@@ -1,4 +1,3 @@
-import { Logo } from './Logo';
 import { Linkedin, Twitter } from 'lucide-react';
 import { scrollToElement } from '../utils';
 
@@ -9,11 +8,12 @@ export function Footer() {
     <footer className="bg-[#030303] text-white py-16 border-t border-white/5">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-16 gap-8">
-          <Logo className="w-8 h-8 text-white" />
+          <img src="/WhiteLogoHorizontal.png" alt="Solvrin Group" className="h-40 w-auto" />
 
           <div className="flex gap-8 text-sm font-bold tracking-widest uppercase">
             <button onClick={() => scrollToElement('hero')} className="text-gray-400 hover:text-white transition-colors cursor-pointer">Home</button>
             <button onClick={() => scrollToElement('services')} className="text-gray-400 hover:text-white transition-colors cursor-pointer">Capabilities</button>
+            <button onClick={() => scrollToElement('team')} className="text-gray-400 hover:text-white transition-colors cursor-pointer">Partners</button>
             <button onClick={() => scrollToElement('contact')} className="text-gray-400 hover:text-white transition-colors cursor-pointer">Contact</button>
           </div>
         </div>

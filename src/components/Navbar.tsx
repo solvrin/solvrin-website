@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Logo } from './Logo';
 import { Menu, X } from 'lucide-react';
 import { scrollToElement } from '../utils';
 
@@ -45,7 +44,7 @@ export function Navbar() {
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-8 flex items-center justify-between">
         <button onClick={() => handleNav('hero')} aria-label="Scroll to top">
-          <Logo className="w-10 h-10 text-white" />
+          <img src="/WhiteLogoHorizontal.png" alt="Solvrin Group" className="h-40 w-auto" />
         </button>
 
         <nav className="hidden md:flex items-center gap-8">

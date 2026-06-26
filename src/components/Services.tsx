@@ -2,7 +2,6 @@ import { useState, useRef } from 'react';
 import { motion, AnimatePresence, useScroll, useTransform } from 'motion/react';
 import { Service } from '../types';
 import { BrainCircuit, Database, GitMerge, Plus } from 'lucide-react';
-import { LogoMark } from './Logo';
 import { SMOOTH_EASE } from '../utils';
 
 const servicesData: Service[] = [
@@ -71,12 +70,12 @@ export function Services() {
         style={{ y: yBg, rotate: rotateBg }}
         className="absolute top-0 right-0 -mr-64 mt-12 opacity-[0.1] pointer-events-none origin-center"
       >
-        <LogoMark className="w-250 h-250 text-white" />
+        <img src="/BlackLogoNoName.png" alt="" className="w-250 h-250" style={{ filter: 'invert(1)' }} />
       </motion.div>
 
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
 
-        <div className="mb-12 md:w-2/3">
+        <div className="mb-16 md:w-2/3">
           <div className="overflow-hidden pb-4">
             <motion.h2
               initial={{ y: "130%", opacity: 0, filter: "blur(10px)" }}
@@ -93,19 +92,8 @@ export function Services() {
             whileInView={{ scaleX: 1, opacity: 1 }}
             viewport={{ once: false, margin: "-50px" }}
             transition={{ duration: 1, ease: SMOOTH_EASE, delay: 0.2 }}
-            className="w-24 h-0.5 bg-white mb-10 origin-left"
+            className="w-24 h-0.5 bg-white mt-4 origin-left"
           />
-          <div className="overflow-hidden pb-2">
-            <motion.p
-              initial={{ y: "120%", opacity: 0, filter: "blur(10px)" }}
-              whileInView={{ y: 0, opacity: 1, filter: "blur(0px)" }}
-              viewport={{ once: false, margin: "-50px" }}
-              transition={{ duration: 1.2, ease: SMOOTH_EASE, delay: 0.3 }}
-              className="text-xl md:text-2xl text-gray-300 leading-relaxed max-w-2xl font-light"
-            >
-              We architect solutions at the intersection of deep tech and business logic. Our methodologies are rigorous, repeatable, and aligned with enterprise security standards.
-            </motion.p>
-          </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -125,7 +113,7 @@ export function Services() {
                 }`}
               >
                 <div className="absolute -bottom-16 -right-16 opacity-0 group-hover:opacity-[0.03] transition-all duration-1000 group-hover:scale-150 origin-center group-hover:-rotate-12 pointer-events-none">
-                  <LogoMark className="w-80 h-80 text-white/50" />
+                  <img src="/BlackLogoNoName.png" alt="" className="w-80 h-80" style={{ filter: 'invert(1)' }} />
                 </div>
 
                 <div
@@ -177,6 +165,18 @@ export function Services() {
             </motion.div>
           )}
         </AnimatePresence>
+
+        <div className="overflow-hidden pb-2 mt-12 md:w-2/3">
+          <motion.p
+            initial={{ y: "120%", opacity: 0, filter: "blur(10px)" }}
+            whileInView={{ y: 0, opacity: 1, filter: "blur(0px)" }}
+            viewport={{ once: false, margin: "-50px" }}
+            transition={{ duration: 1.2, ease: SMOOTH_EASE, delay: 0.3 }}
+            className="text-xl md:text-2xl text-gray-300 leading-relaxed max-w-2xl font-light"
+          >
+            We architect solutions at the intersection of deep tech and business logic. Our methodologies are rigorous, repeatable, and aligned with enterprise security standards.
+          </motion.p>
+        </div>
 
       </div>
     </section>
