@@ -89,7 +89,7 @@ Each card's "Primary Scope" button toggles `expandedId`. The process steps expan
 ## TypeScript Contracts
 Core types live in `src/types.ts`. Current types: `Service`, `ProcessStep`, `TeamMember`, `ContactData`, `FormStatus`.
 
-- `TeamMember.imageUrl` is required (string, not optional) — all three members always provide it
+- `TeamMember.imageUrl` is required (string, not optional) — both members always provide it
 - `ContactData.projectScope` is a union type — cast `e.target.value` explicitly when handling the select onChange
 - `FormStatus` does not include `'VALIDATING'` — do not add it
 - Form submit handler type: `React.FormEvent<HTMLFormElement>` not `React.SubmitEvent`
