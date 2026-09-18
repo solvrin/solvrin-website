@@ -6,14 +6,6 @@ import { SMOOTH_EASE } from '../utils';
 
 const teamMembers: TeamMember[] = [
   {
-    id: 'eric',
-    name: 'Eric Shao',
-    role: 'Co-Founder & Managing Partner',
-    bio: 'Former technical lead in scalable data architectures. Specializes in optimizing hybrid cloud infrastructures for latency-sensitive applications.',
-    imageUrl: '/eric.jfif',
-    linkedIn: 'https://www.linkedin.com/in/shaoeric/'
-  },
-  {
     id: 'joel',
     name: 'Joel Yeo',
     role: 'Co-Founder & Managing Partner',
@@ -72,7 +64,7 @@ export function Team() {
           />
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-x-12 gap-y-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-16 max-w-4xl mx-auto">
           {teamMembers.map((member, idx) => (
             <motion.article
               key={member.id}
