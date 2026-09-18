@@ -64,7 +64,7 @@ export function Team() {
           />
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-16 max-w-4xl">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-16 max-w-4xl mx-auto">
           {teamMembers.map((member, idx) => (
             <motion.article
               key={member.id}
